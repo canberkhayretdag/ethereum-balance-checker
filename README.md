@@ -5,9 +5,10 @@ A nestjs application that has endpoint which get ethereum addresses and check th
 ## Environment Variables
 Fill the .env file for variables.
 
-PORT=
-MAINNET_KEY=
-COINGECKO_URL=
+PORT
+MAINNET_KEY
+COINGECKO_URL
+
 
 ## Installation
 
