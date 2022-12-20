@@ -28,10 +28,13 @@
     "@nestjs/platform-express": "^9.0.0",
     "axios": "^1.2.1",
     "ethereumjs-util": "^7.1.5",
+    "ethers": "^5.7.2",
+    "evm-bn": "^1.1.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
-    "web3": "^1.8.1"
+    "web3": "^1.8.1",
+    "web3-utils": "^1.8.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",

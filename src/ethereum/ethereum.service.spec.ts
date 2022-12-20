@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { EthereumService } from './ethereum.service';
-import { isValidEthAddress, getBalance, convertEthToUsd } from '../utils';
 import { Wallet } from './entities/wallet.entity';
 import { EthAddressResponseDto } from './dto/eth-address-response.dto';
 
@@ -28,7 +27,7 @@ describe('EthereumService', () => {
       ];
       const wrongAddresses = ['0x123', '0x456'];
       const validAddresses = [
-        new Wallet('0x1c76d36cAc6eFaaDF83C7aF114bba0016AD2925C', 0, 0),
+        new Wallet('0x1c76d36cAc6eFaaDF83C7aF114bba0016AD2925C', 0, 0, 0),
       ];
 
       // mock the isValidEthAddress, getBalance, and convertEthToUsd functions
