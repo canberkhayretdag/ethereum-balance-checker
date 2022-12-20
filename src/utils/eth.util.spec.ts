@@ -4,6 +4,7 @@ import {
   getBalance,
   isValidEthAddress,
   sortWallets,
+  tetherDecimalConversion,
 } from './eth.util';
 import Web3 from 'web3';
 import { Wallet } from '../ethereum/entities/wallet.entity';
@@ -91,15 +92,15 @@ describe('isValidEthAddress', () => {
 describe('sortWallets', () => {
   it('should sort the wallets by their USD balance in descending order', async () => {
     const wallets = [
-      new Wallet('0x123', 0, 100),
-      new Wallet('0x345', 0, 50),
-      new Wallet('0x678', 0, 150),
+      new Wallet('0x123', 0, 2, 100),
+      new Wallet('0x345', 0, 3, 50),
+      new Wallet('0x678', 0, 1, 150),
     ];
 
     const expected = [
-      new Wallet('0x678', 0, 150),
-      new Wallet('0x123', 0, 100),
-      new Wallet('0x345', 0, 50),
+      new Wallet('0x678', 0, 1, 150),
+      new Wallet('0x123', 0, 2, 100),
+      new Wallet('0x345', 0, 3, 50),
     ];
 
     const result = await sortWallets(wallets);
@@ -113,5 +114,19 @@ describe('sortWallets', () => {
 
     const result = await sortWallets(wallets);
     expect(result).toEqual(expected);
+  });
+});
+
+describe('tetherDecimalConversion', () => {
+  it('should convert a number to 6 decimal places', () => {
+    expect(tetherDecimalConversion(1)).toEqual(1000000);
+    expect(tetherDecimalConversion(1.123456)).toEqual(1123456);
+    expect(tetherDecimalConversion(0.123456)).toEqual(123456);
+  });
+
+  it('should return 0 for non-positive numbers', () => {
+    expect(tetherDecimalConversion(0)).toEqual(0);
+    expect(tetherDecimalConversion(-1)).toEqual(0);
+    expect(tetherDecimalConversion(-0.123456)).toEqual(0);
   });
 });
